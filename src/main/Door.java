@@ -49,5 +49,16 @@ public class Door
         type = pType;
         floor = pFloor;
     }
+    
+    public boolean isOpen() {
+    	return isOpen;
+    }
 
+    public void open() {
+    	isOpen = true;
+    }
+    
+    public void close() {
+    	isOpen = false;
+    }
 }

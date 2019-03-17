@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -27,6 +28,13 @@ import javax.swing.border.TitledBorder;
 public class PanelFloors extends JPanel implements ActionListener
 {
 
+	// -----------------------------------------------------------------
+    // Constants
+    // -----------------------------------------------------------------
+	
+	public static final String OPENED = "Opened";
+	public static final String CLOSED = "Closed";
+	
     // -----------------------------------------------------------------
     // Attributes
     // -----------------------------------------------------------------
@@ -135,12 +143,12 @@ public class PanelFloors extends JPanel implements ActionListener
         	floors[counter] = i;
         	
         	// Inner Doors
-        	JLabel lblInnerDoor = new JLabel( "Closed" );
+        	JLabel lblInnerDoor = new JLabel( CLOSED );
         	panelFloors.add(lblInnerDoor);
         	lblsInnerDoors[counter] = lblInnerDoor;
         	
         	// Outer Doors
-        	JLabel lblOuterDoor = new JLabel( "Closed" );
+        	JLabel lblOuterDoor = new JLabel( CLOSED );
         	panelFloors.add(lblOuterDoor);
         	lblsOuterDoors[counter] = lblOuterDoor;
         	
@@ -174,6 +182,36 @@ public class PanelFloors extends JPanel implements ActionListener
     // Methods
     // -----------------------------------------------------------------
 
+    /**
+     * Updates the doors' labels with OPENED for the respective floor. <br>
+     * @param floor for which the doors will open
+     * <b>post: </b> The inner/outer doors labels are updated.
+    */
+    public void openFloorDoors(int floor) {
+    	int floorIndex = Arrays.asList(floors).indexOf(floor);
+    	
+    	JLabel lblOuterDoor = lblsOuterDoors[floorIndex];
+    	JLabel lblInnerDoor = lblsInnerDoors[floorIndex];
+    	
+		lblOuterDoor.setText(OPENED);
+		lblInnerDoor.setText(OPENED);
+	}
+    
+    /**
+     * Updates the doors' labels with CLOSED for the respective floor. <br>
+     * @param floor for which the doors will close
+     * <b>post: </b> The inner/outer doors labels are updated.
+    */
+    public void closeFloorDoors(int floor) {
+    	int floorIndex = Arrays.asList(floors).indexOf(floor);
+    	
+    	JLabel lblInnerDoor = lblsInnerDoors[floorIndex];
+    	JLabel lblOuterDoor = lblsOuterDoors[floorIndex];
+    	
+    	lblInnerDoor.setText(CLOSED);
+		lblOuterDoor.setText(CLOSED);
+	}
+    
     /**
      * Handles button events
      * @param pEvent Click on button event. pEvent != null.

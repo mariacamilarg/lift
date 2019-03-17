@@ -8,6 +8,9 @@
 
 package main;
 
+import java.util.Arrays;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import view.ViewLift;
@@ -33,6 +36,14 @@ public class Lift
 	   }
 	
     // -----------------------------------------------------------------
+    // Constants
+    // -----------------------------------------------------------------
+	
+	public static final int MOVE_TIME_BETWEEN_FLOORS = 2000; // in milliseconds
+	public static final int WAIT_TIME_DOORS_OPENED = 4000; // in milliseconds
+	public static final int LOOP_WAIT_TIME = 1000; // in milliseconds
+	
+	// -----------------------------------------------------------------
     // Attributes
     // -----------------------------------------------------------------
 
@@ -137,41 +148,110 @@ public class Lift
     	return floors;
     }
     
+    /**
+     * Returns the lift's current floor. <br>
+     */
     public int getCurrentFloor() {
 		return state.getPosition();
 	}
     
+    /**
+     * Returns the lift's status. <br>
+     */
     public String getStatus() {
 		return state.getStatus().toString();
 	}
     
-    public void moveToNextStop() {
-    	// TODO MC
+    /**
+     * Moves the lift. <br>
+     */
+    public void move() {
     	
-    	// check status:
-    	// disable everything if there is an emergency and dont move
-    	// dont move if doors are blocked
-
-    	// process next stop from state
-    	
-    	// stop
-    	
-    	// update view
+    	try {
+	    	while(true) {
+	    		
+	    		// Check status: don't move if emergency or if doors are blocked
+	    		if ( (state.getStatus() == Status.EMERGENCY) || (state.getStatus() == Status.DOORS_BLOCKED) ) {
+	    			// wait until button is pressed again 
+	    			continue; 
+	    		} else {
+	    			
+	    			if ( !state.isStopsEmpty() ) {
+		    			
+		    			// Process next stop from state
+		    			Stop nextStop = state.getNextStop();
+		    	    	int nextFloor = nextStop.getFloor();
+		    	    	Direction nextDirection = nextStop.getDirection();
+		    	    	
+		    	    	int currentFloor = state.getPosition();
+		    	    	
+		    	    	// Move between floors
+		    	    	while (currentFloor != nextFloor) {
+		    	    		Thread.sleep(MOVE_TIME_BETWEEN_FLOORS);
+		    	    		
+		    	    		if (nextDirection == Direction.UP) {
+		    	    			state.setPosition(currentFloor + 1);
+		    	    			state.setStatus(Status.GOING_UP);
+		    	    		} else {
+		    	    			state.setPosition(currentFloor - 1);
+		    	    			state.setStatus(Status.GOING_DOWN);
+		    	    		}
+		    	    		
+		    	    		view.refresh();
+		    	    	}
+		    	    	
+		    	    	// Stop
+		    	    	stopAtFloor(nextFloor);
+		    		} else {
+		    			state.setStatus(Status.STATIONARY);
+		    			view.refresh();
+		    		}
+	    			
+	    		}
+	    		
+	    		// For efficiency
+	    		Thread.sleep(LOOP_WAIT_TIME);
+	    	}
+    	} catch (InterruptedException e) {
+			// Exception from Thread.sleep()
+			e.printStackTrace();
+		}
     }
     
     /**
      * Stops at a particular floor. <br>
      * @param floor Floor to stop at
      * @param direction Direction to be going when it stops
+     * @throws InterruptedException 
      */
-    public void stopAtFloor(int floor) {
-    	// TODO MC
-    	// ...
-    	// handle doors
-    	
+    public void stopAtFloor(int floor) throws InterruptedException {
+    	// Opens doors
+    	int floorIndex = Arrays.asList(floors).indexOf(floor);
+		Door outerDoor = outerDoors[floorIndex];
+		
+		outerDoor.open();
+		outerDoors[floorIndex] = outerDoor;
+		innerDoor.open();
+		
+		// Updates the view
+		view.enableInsideButtonFloor(floor);
+		view.openFloorDoors(floor);
+		view.refresh();
+		
+		// Remove stop from state
     	state.removeStop();
+		
+		// Waits for people to get in/out
+    	Thread.sleep(WAIT_TIME_DOORS_OPENED);
     	
-    	view.stopAtFloor(floor);
+    	// Closes doors
+    	innerDoor.close();
+    	outerDoor.close();
+    	outerDoors[floorIndex] = outerDoor;
+    	
+    	// Updates the view
+    	view.closeFloorDoors(floor);
+    	view.refresh();    	
     }
     
     /**

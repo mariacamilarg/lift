@@ -28,7 +28,7 @@ public class ViewLift extends JFrame
     /**
      * Principal main class
      */
-    private Lift lift;
+    private static Lift lift;
 
     // -----------------------------------------------------------------
     // Atributes of the view
@@ -91,27 +91,6 @@ public class ViewLift extends JFrame
     }
 
     // -----------------------------------------------------------------
-    // Methods
-    // -----------------------------------------------------------------
-
-    /**
-     * Updates current lift's data. <br>
-     * <b>post: </b> The fields with lift's information are updated.
-     */
-    public void refresh( )
-    {
-    	// TODO MARIA CAMILA: update view and re enable buttons after stops
-    	
-    	// Panel Lift
-    	panelLift.refresh();
-    	
-    	// Panel Floors
-    	//TODO
-
-        validate( );
-    }
-
-    // -----------------------------------------------------------------
     // Main
     // -----------------------------------------------------------------
 
@@ -128,6 +107,8 @@ public class ViewLift extends JFrame
 
             ViewLift view = new ViewLift( );
             view.setVisible( true );
+            
+            lift.move();
         }
         catch( Exception e )
         {
@@ -138,6 +119,18 @@ public class ViewLift extends JFrame
     // -----------------------------------------------------------------
     // General Methods
     // -----------------------------------------------------------------
+    
+    /**
+     * Updates current lift's data. <br>
+     * <b>post: </b> The fields with lift's information are updated.
+     */
+    public void refresh( )
+    {
+    	// Panel Lift
+    	panelLift.refresh();
+
+        validate( );
+    }
     
     /**
      * Returns the lift's top floor number. <br>
@@ -160,12 +153,6 @@ public class ViewLift extends JFrame
 		return lift.getnFloors();
 	}
 	
-	public void stopAtFloor(int floor) {
-		enableInsideButtonFloor(floor);
-		
-		//TODO JUAN handle doors
-	}
-	
 	// -----------------------------------------------------------------
     // Outside Actions Methods
     // -----------------------------------------------------------------
@@ -185,7 +172,15 @@ public class ViewLift extends JFrame
 	public void outsideActionDown(int floor) {
 		// TODO JUAN
 	}
-
+	
+	public void openFloorDoors(int floor) {
+		panelFloors.openFloorDoors(floor);
+	}
+	
+	public void closeFloorDoors(int floor) {
+		panelFloors.closeFloorDoors(floor);
+	}
+	
 	// -----------------------------------------------------------------
     // Inside Actions Methods
     // -----------------------------------------------------------------

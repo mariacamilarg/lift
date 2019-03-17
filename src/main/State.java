@@ -60,8 +60,11 @@ public class State
     public int getPosition() {
     	return position;
     }
-
     
+    public void setPosition(int pPosition) {
+    	position = pPosition;
+    }
+
     public Status getStatus() {
     	return status;
     }
@@ -79,9 +82,17 @@ public class State
     	// TODO MC: KEY method, it has to insert it according to the logic
     }
     
+    public Stop getNextStop() {
+		return stops.get(0);
+	}
+    
     public void removeStop() {
 		stops.remove(0);
 	}
+    
+    public boolean isStopsEmpty() {
+    	return stops.isEmpty();
+    }
 
 	public void switchEmergencyStatus() {
 		if (!status.equals(Status.EMERGENCY)) {

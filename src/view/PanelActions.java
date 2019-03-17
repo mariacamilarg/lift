@@ -165,34 +165,6 @@ public class PanelActions extends JPanel implements ActionListener
     // Methods
     // -----------------------------------------------------------------
 
-    
-    /**
-     * Actualiza los campos del panel con la informaci�n del empleado. <br>
-     * <b>post: </b> Los campos muestran la nueva informaci�n.
-     * @param pNombre Nombre del empleado. pNombre != null && pNombre != "".
-     * @param pApellido Apellido del empleado. pApellido != null && pApellido != "".
-     * @param pSexo Sexo del empleado. pSexo pertenece a {"m","f"}.
-     * @param pFechaIngreso Fecha de ingreso a la empresa. pFechaIngreso != null && pFechaIngreso != "".
-     * @param pFechaNacimiento Fecha de Nacimiento del empleado. pFechaNacimiento != null && pFechaNacimiento != "".
-     * @param pImagen Ruta donde se encuentra la imagen. pImagen != null.
-     
-    public void actualizarCampos( String pNombre, String pApellido, String pSexo, String pFechaIngreso, String pFechaNacimiento, String pImagen )
-    {
-        txtNombre.setText( pNombre );
-        txtApellido.setText( pApellido );
-        txtGenero.setText( pSexo );
-        txtFIngreso.setText( pFechaIngreso );
-        txtFNacimiento.setText( pFechaNacimiento );
-        remove( lblImagen );
-        lblImagen = new JLabel( new ImageIcon( "./data/imagenes/" + pImagen ) );
-        lblImagen.setHorizontalAlignment( JLabel.CENTER );
-        lblImagen.setVerticalAlignment( JLabel.CENTER );
-        lblImagen.setPreferredSize( new Dimension( 170, 0 ) );
-        add( lblImagen, BorderLayout.EAST );
-
-    }
-    */
-    
     public void enableInsideButtonFloor(int floor) {
 		int floorIndex = Arrays.asList(floors).indexOf(floor);
 		JButton floorButton = btnsFloors[floorIndex];
@@ -221,6 +193,8 @@ public class PanelActions extends JPanel implements ActionListener
         	
         	if (command.equals(cmdFloor)) {
         		//System.out.println("Command ap: " +cmdFloor);
+        		JButton btnFloor = btnsFloors[i];
+        		btnFloor.setEnabled(false);
         		principal.insideActionFloor(floor);
         		return;
         	}

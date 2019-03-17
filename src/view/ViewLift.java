@@ -160,6 +160,12 @@ public class ViewLift extends JFrame
 		return lift.getnFloors();
 	}
 	
+	public void stopAtFloor(int floor) {
+		enableInsideButtonFloor(floor);
+		
+		//TODO JUAN handle doors
+	}
+	
 	// -----------------------------------------------------------------
     // Outside Actions Methods
     // -----------------------------------------------------------------
@@ -190,7 +196,6 @@ public class ViewLift extends JFrame
      */
 	public void insideActionFloor(int floor) {
 		lift.insertInsideStop(floor);
-		disableInsideButtonFloor(floor);
 	}
 	
 	public void enableInsideButtonFloor(int floor) {

@@ -44,6 +44,10 @@ public class Stop
         direction = pDirection;
     }
     
+    public int getFloor() {
+    	return floor;
+    }
+    
     public Direction getDirection() {
     	return direction;
     }

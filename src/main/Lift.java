@@ -159,11 +159,19 @@ public class Lift
     	// update view
     }
     
+    /**
+     * Stops at a particular floor. <br>
+     * @param floor Floor to stop at
+     * @param direction Direction to be going when it stops
+     */
     public void stopAtFloor(int floor) {
     	// TODO MC
     	// ...
+    	// handle doors
     	
-    	view.enableInsideButtonFloor(floor);
+    	state.removeStop();
+    	
+    	view.stopAtFloor(floor);
     }
     
     /**

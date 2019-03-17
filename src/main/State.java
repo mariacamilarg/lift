@@ -78,6 +78,10 @@ public class State
     public void insertStop (Stop pStop) {
     	// TODO MC: KEY method, it has to insert it according to the logic
     }
+    
+    public void removeStop() {
+		stops.remove(0);
+	}
 
 	public void switchEmergencyStatus() {
 		if (!status.equals(Status.EMERGENCY)) {

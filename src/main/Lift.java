@@ -10,9 +10,6 @@ package main;
 
 import java.util.Arrays;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-
 import view.ViewLift;
 
 /**

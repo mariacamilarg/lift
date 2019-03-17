@@ -53,6 +53,14 @@ public class Door
     public boolean isOpen() {
     	return isOpen;
     }
+    
+    public DoorType getType() {
+    	return type;
+    }
+    
+    public int getFloor() {
+    	return floor;
+    }
 
     public void open() {
     	isOpen = true;

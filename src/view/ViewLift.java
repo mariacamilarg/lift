@@ -173,10 +173,18 @@ public class ViewLift extends JFrame
 		// TODO JUAN
 	}
 	
+	/**
+     * Opens the doors for the respective floor. <br>
+     * @param floor for which the doors will open.
+     */
 	public void openFloorDoors(int floor) {
 		panelFloors.openFloorDoors(floor);
 	}
 	
+	/**
+     * Closes the doors for the respective floor. <br>
+     * @param floor for which the doors will close.
+     */
 	public void closeFloorDoors(int floor) {
 		panelFloors.closeFloorDoors(floor);
 	}
@@ -193,10 +201,16 @@ public class ViewLift extends JFrame
 		lift.insertInsideStop(floor);
 	}
 	
+	/**
+     * Enables the floor button inside the lift. <br>
+     */
 	public void enableInsideButtonFloor(int floor) {
 		panelActions.enableInsideButtonFloor(floor);
 	}
 	
+	/**
+     * Disables the floor button inside the lift. <br>
+     */
 	public void disableInsideButtonFloor(int floor) {
 		panelActions.disableInsideButtonFloor(floor);
 	}
@@ -221,14 +235,18 @@ public class ViewLift extends JFrame
     // Panel Lift Methods
     // -----------------------------------------------------------------
 	
+	/**
+     * Returns current floor of the lift. <br>
+     */
 	public int getCurrentFloor() {
 		return lift.getCurrentFloor();
 	}
 
+	/**
+     * Returns current status of the lift. <br>
+     */
 	public String getStatus() {
 		return lift.getStatus();
 	}
-	
-	
 	
 }

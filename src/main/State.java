@@ -80,6 +80,7 @@ public class State
     
     public void insertStop (Stop pStop) {
     	// TODO MC: KEY method, it has to insert it according to the logic
+    	
     }
     
     public Stop getNextStop() {

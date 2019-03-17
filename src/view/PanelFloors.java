@@ -71,9 +71,19 @@ public class PanelFloors extends JPanel implements ActionListener
     private JLabel[] lblsOuterDoors;
 
     /**
+     * Button commands to order elevator up
+     */
+    private String[] cmdsLiftUp;
+    
+    /**
      * Buttons to order elevator up
      */
     private JButton[] btnsLiftUp;
+    
+    /**
+     * Button commands to order elevator down
+     */
+    private String[] cmdsLiftDown;
     
     /**
      * Buttons to order elevator down
@@ -103,7 +113,11 @@ public class PanelFloors extends JPanel implements ActionListener
         floors = new int[nFloors];
         lblsInnerDoors = new JLabel[nFloors];
         lblsOuterDoors = new JLabel[nFloors];
+        
+        cmdsLiftUp = new String[nFloors];
         btnsLiftUp = new JButton[nFloors];
+        
+        cmdsLiftDown = new String[nFloors];
         btnsLiftDown = new JButton[nFloors];
         
         JPanel panelFloors = new JPanel( new GridLayout( nFloors+1, 5 ) );
@@ -137,6 +151,7 @@ public class PanelFloors extends JPanel implements ActionListener
         	btnLiftUp.setActionCommand( commandUp );
         	btnLiftUp.addActionListener( this );
         	panelFloors.add(btnLiftUp);
+        	cmdsLiftUp[counter] = commandUp;
         	btnsLiftUp[counter] = btnLiftUp;
         	
         	String commandDown = "OUTSIDE_DOWN_" + i;
@@ -145,6 +160,7 @@ public class PanelFloors extends JPanel implements ActionListener
         	btnLiftDown.setActionCommand( commandDown );
         	btnLiftDown.addActionListener( this );
         	panelFloors.add(btnLiftDown);
+        	cmdsLiftDown[counter] = commandDown;
         	btnsLiftDown[counter] = btnLiftDown;
         	
         	// Counter
@@ -158,46 +174,31 @@ public class PanelFloors extends JPanel implements ActionListener
     // Methods
     // -----------------------------------------------------------------
 
-    
     /**
-     * Actualiza los campos del panel con la informaci�n del empleado. <br>
-     * <b>post: </b> Los campos muestran la nueva informaci�n.
-     * @param pNombre Nombre del empleado. pNombre != null && pNombre != "".
-     * @param pApellido Apellido del empleado. pApellido != null && pApellido != "".
-     * @param pSexo Sexo del empleado. pSexo pertenece a {"m","f"}.
-     * @param pFechaIngreso Fecha de ingreso a la empresa. pFechaIngreso != null && pFechaIngreso != "".
-     * @param pFechaNacimiento Fecha de Nacimiento del empleado. pFechaNacimiento != null && pFechaNacimiento != "".
-     * @param pImagen Ruta donde se encuentra la imagen. pImagen != null.
-     
-    public void actualizarCampos( String pNombre, String pApellido, String pSexo, String pFechaIngreso, String pFechaNacimiento, String pImagen )
-    {
-        txtNombre.setText( pNombre );
-        txtApellido.setText( pApellido );
-        txtGenero.setText( pSexo );
-        txtFIngreso.setText( pFechaIngreso );
-        txtFNacimiento.setText( pFechaNacimiento );
-        remove( lblImagen );
-        lblImagen = new JLabel( new ImageIcon( "./data/imagenes/" + pImagen ) );
-        lblImagen.setHorizontalAlignment( JLabel.CENTER );
-        lblImagen.setVerticalAlignment( JLabel.CENTER );
-        lblImagen.setPreferredSize( new Dimension( 170, 0 ) );
-        add( lblImagen, BorderLayout.EAST );
-
-    }
-    */
-
-    /**
-     * Manejo de los eventos de los botones.
-     * @param pEvento Evento de click sobre un bot�n. pEvento != null.
+     * Handles button events
+     * @param pEvent Click on button event. pEvent != null.
      */
-    public void actionPerformed( ActionEvent pEvento )
+    public void actionPerformed( ActionEvent pEvent )
     {
-    	//TODO hacer 
-        String command = pEvento.getActionCommand( );
-
-        if( command.equals( "OUTSIDE_DOWN_1" ) )
-        {
-            principal.outsideActionDown(1);
+    	String command = pEvent.getActionCommand( );
+        
+        // Floor commands (up and down)
+        for (int i=0; i<nFloors; i++) {
+        	int floor = floors[i];
+        	String cmd_up = cmdsLiftUp[i];
+        	String cmd_down = cmdsLiftDown[i];
+        	
+        	// up
+        	if (command.equals(cmd_up)) {
+        		principal.outsideActionUp(floor);
+        		return;
+        	}
+        	
+        	// down
+        	if (command.equals(cmd_down)) {
+        		principal.outsideActionDown(floor);
+        		return;
+        	}
         }
     }
 

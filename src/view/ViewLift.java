@@ -65,7 +65,7 @@ public class ViewLift extends JFrame
     public ViewLift( )
     {
         setTitle( "Lift" );
-        setSize( 800, 800 );
+        setSize( 600, 600 );
         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
         // Build main connection
@@ -155,6 +155,10 @@ public class ViewLift extends JFrame
         }
     }
 
+    // -----------------------------------------------------------------
+    // General Methods
+    // -----------------------------------------------------------------
+    
     /**
      * Returns the lift's top floor number. <br>
      */
@@ -175,14 +179,54 @@ public class ViewLift extends JFrame
 	public int getnFloors() {
 		return lift.getnFloors();
 	}
+	
+	// -----------------------------------------------------------------
+    // Outside Actions Methods
+    // -----------------------------------------------------------------
 
+	/**
+     * Handles a request to go up from a floor outside the lift. <br>
+     * @param floor Floor from which the up button was pressed.
+     */
+	public void outsideActionUp(int floor) {
+		// TODO JUAN
+		
+	}
+	
+	/**
+     * Handles a request to go down from a floor outside the lift. <br>
+     * @param floor Floor from which the down button was pressed.
+     */
 	public void outsideActionDown(int floor) {
-		// TODO hacer
+		// TODO JUAN
 	}
 
-	public void insideActionFloor(int i) {
-		// TODO HACER
+	// -----------------------------------------------------------------
+    // Inside Actions Methods
+    // -----------------------------------------------------------------
+	
+	/**
+     * Handles a floor button press inside the lift. <br>
+     * @param floor Floor to which the person inside the lift wants to go
+     */
+	public void insideActionFloor(int floor) {
+		// TODO MARIA CAMILA
+		
+	}
+	
+	/**
+     * Handles a emergency button press inside the lift. <br>
+     */
+	public void insideActionEmergency() {
+		// TODO MARIA CAMILA
 		
 	}
 
+	/**
+     * Handles a block button press inside the lift. <br>
+     */
+	public void insideActionBlockDoors() {
+		// TODO MARIA CAMILA
+		
+	}
 }

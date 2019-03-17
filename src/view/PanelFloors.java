@@ -201,5 +201,4 @@ public class PanelFloors extends JPanel implements ActionListener
         	}
         }
     }
-
 }

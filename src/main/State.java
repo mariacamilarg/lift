@@ -10,18 +10,13 @@ package main;
 
 import java.util.ArrayList;
 
+import main.Lift.Status;
+
 /**
  * Class that represents a lift controller
  */
 public class State
-{
-	// -----------------------------------------------------------------
-    // Enumerations
-    // -----------------------------------------------------------------
-	enum Status{
-	       GOING_UP, GOING_DOWN, STATIONARY, EMERGENCY, DOORS_BLOCKED;
-	   }
-	
+{	
     // -----------------------------------------------------------------
     // Attributes
     // -----------------------------------------------------------------
@@ -32,14 +27,14 @@ public class State
     private int position;
     
     /**
-     * Lift's inner doors status (false=closed, true=opened).
-     */
-    private boolean inner_doors_opened;
-    
-    /**
      * Lift's current status
      */
     private Status status;
+    
+    /**
+     * Lift's status before a change
+     */
+    private Status previousStatus;
     
     /**
      * Lift's stops.
@@ -57,9 +52,47 @@ public class State
     public State( )
     {
         position = 0;
-        inner_doors_opened = false;
+        previousStatus = Status.STATIONARY;
         status = Status.STATIONARY;
         stops = new ArrayList<Stop>();
     }
+    
+    public int getPosition() {
+    	return position;
+    }
 
+    
+    public Status getStatus() {
+    	return status;
+    }
+    
+    public void setStatus(Status pStatus) {
+    	previousStatus = status;
+    	status = pStatus;
+    }
+    
+    public ArrayList<Stop> getStops() {
+    	return stops;
+    }
+    
+    public void insertStop (Stop pStop) {
+    	// TODO MC: KEY method, it has to insert it according to the logic
+    }
+
+	public void switchEmergencyStatus() {
+		if (!status.equals(Status.EMERGENCY)) {
+			setStatus(Status.EMERGENCY);
+		} else {
+			setStatus(previousStatus);
+		}
+	}
+
+	public void switchBlockedDoorsStatus() {
+		if (!status.equals(Status.DOORS_BLOCKED)) {
+			setStatus(Status.DOORS_BLOCKED);
+		} else {
+			setStatus(previousStatus);
+		}
+	}
+    
 }

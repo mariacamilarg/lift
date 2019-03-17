@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -68,6 +69,11 @@ public class PanelActions extends JPanel implements ActionListener
      * Buttons to each floor
      */
     private JButton[] btnsFloors;
+    
+    /**
+     * Boolean to know if there is an emergency
+     */
+    private boolean inEmergency;
     
     /**
      * Button command for emergency
@@ -135,6 +141,7 @@ public class PanelActions extends JPanel implements ActionListener
         }
         
         // Emergency button
+        inEmergency = false;
     	cmdEmergency = "EMERGENCY";
     	btnEmergency = new JButton( );
     	btnEmergency.setText( cmdEmergency );
@@ -185,6 +192,18 @@ public class PanelActions extends JPanel implements ActionListener
 
     }
     */
+    
+    public void enableInsideButtonFloor(int floor) {
+		int floorIndex = Arrays.asList(floors).indexOf(floor);
+		JButton floorButton = btnsFloors[floorIndex];
+		floorButton.setEnabled(true);
+	}
+    
+    public void disableInsideButtonFloor(int floor) {
+    	int floorIndex = Arrays.asList(floors).indexOf(floor);
+		JButton floorButton = btnsFloors[floorIndex];
+		floorButton.setEnabled(false);
+	}
 
     /**
      * Handles button events
@@ -210,10 +229,18 @@ public class PanelActions extends JPanel implements ActionListener
         // Emergency command
         if( command.equals(cmdEmergency) )
         {
+            inEmergency = !inEmergency;
+            
+            for (int i=0; i<nFloors; i++) {
+            	JButton btnFloor = btnsFloors[i];
+            	btnFloor.setEnabled(!inEmergency);
+            }
+            btnBlockDoors.setEnabled(!inEmergency);
+            
             principal.insideActionEmergency();
         }
         
-        // Emergency command
+        // Block doors command
         else if( command.equals(cmdBlockDoors) )
         {
             principal.insideActionBlockDoors();

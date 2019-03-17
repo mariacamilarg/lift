@@ -69,7 +69,7 @@ public class ViewLift extends JFrame
         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
         // Build main connection
-        lift = new Lift( );
+        lift = new Lift(this);
 
         // Build panels
         panelLift = new PanelLift( this );
@@ -95,38 +95,18 @@ public class ViewLift extends JFrame
     // -----------------------------------------------------------------
 
     /**
-     * Actualiza los datos actuales del lift. <br>
-     * <b>post: </b> Se actualizaron los campos de la ventana que contienen la informaci�n del lift.
+     * Updates current lift's data. <br>
+     * <b>post: </b> The fields with lift's information are updated.
      */
     public void refresh( )
     {
-    	/**
-        String nombre, apellido, genero, fechaI, fechaN, imagen;
-        double salario;
-
-        nombre = lift.darNombre( );
-        apellido = lift.darApellido( );
-
-        int iGenero = lift.darGenero( );
-        if( iGenero == 1 )
-        {
-            genero = "masculino";
-        }
-        else
-        {
-            genero = "femenino";
-        }
-
-        fechaI = lift.darFechaIngreso( );
-        fechaN = lift.darFechaNacimiento( );
-        salario = lift.darSalario( );
-        imagen = lift.darImagen( );
-
-        panelDatos.actualizarCampos( nombre, apellido, genero, fechaI, fechaN, imagen );
-        panelDatos.actualizarSalario( salario );
-
-        panelConsultas.limpiarCampos( );
-        */
+    	// TODO MARIA CAMILA: update view and re enable buttons after stops
+    	
+    	// Panel Lift
+    	panelLift.refresh();
+    	
+    	// Panel Floors
+    	//TODO
 
         validate( );
     }
@@ -209,20 +189,46 @@ public class ViewLift extends JFrame
      * @param floor Floor to which the person inside the lift wants to go
      */
 	public void insideActionFloor(int floor) {
-		// TODO MARIA CAMILA	
+		lift.insertInsideStop(floor);
+		disableInsideButtonFloor(floor);
+	}
+	
+	public void enableInsideButtonFloor(int floor) {
+		panelActions.enableInsideButtonFloor(floor);
+	}
+	
+	public void disableInsideButtonFloor(int floor) {
+		panelActions.disableInsideButtonFloor(floor);
 	}
 	
 	/**
      * Handles a emergency button press inside the lift. <br>
      */
 	public void insideActionEmergency() {
-		// TODO MARIA CAMILA
+		lift.switchEmergencyStatus();
+		refresh();
 	}
 
 	/**
      * Handles a block button press inside the lift. <br>
      */
 	public void insideActionBlockDoors() {
-		// TODO MARIA CAMILA
+		lift.switchBlockedDoorsStatus();
+		refresh();
 	}
+
+	// -----------------------------------------------------------------
+    // Panel Lift Methods
+    // -----------------------------------------------------------------
+	
+	public int getCurrentFloor() {
+		return lift.getCurrentFloor();
+	}
+
+	public String getStatus() {
+		return lift.getStatus();
+	}
+	
+	
+	
 }

@@ -51,13 +51,14 @@ public class PanelLift extends JPanel
     /**
      * Label for direction.
      */
-    private JLabel lblDirection;
+    private JLabel lblStatus;
     
     /**
      * TextField for current direction
      */
-    private JTextField txtDirection;
+    private JTextField txtStatus;
 
+    
     // -----------------------------------------------------------------
     // Constructors
     // -----------------------------------------------------------------
@@ -75,51 +76,34 @@ public class PanelLift extends JPanel
         setBorder( new CompoundBorder( new EmptyBorder( 0, 0, 5, 0 ), new TitledBorder( "Current Status" ) ) );
 
         lblFloor = new JLabel( "Floor: " );
-        lblDirection = new JLabel( "Direction: " );
+        lblStatus = new JLabel( "Status: " );
 
-        txtFloor = new JTextField( "0" );
+        txtFloor = new JTextField( principal.getCurrentFloor() );
         txtFloor.setEditable( false );
-        txtDirection = new JTextField( "-" );
-        txtDirection.setEditable( false );
+        txtStatus = new JTextField( principal.getStatus() );
+        txtStatus.setEditable( false );
 
         JPanel panelLift = new JPanel( new GridLayout( 1, 4 ) );
         panelLift.add( lblFloor );
         panelLift.add( txtFloor );
-        panelLift.add( lblDirection );
-        panelLift.add( txtDirection );
+        panelLift.add( lblStatus );
+        panelLift.add( txtStatus );
 
         add( panelLift, BorderLayout.CENTER );
     }
+
 
     // -----------------------------------------------------------------
     // Methods
     // -----------------------------------------------------------------
 
     /**
-     * Actualiza los campos del panel con la informaci�n del empleado. <br>
-     * <b>post: </b> Los campos muestran la nueva informaci�n.
-     * @param pNombre Nombre del empleado. pNombre != null && pNombre != "".
-     * @param pApellido Apellido del empleado. pApellido != null && pApellido != "".
-     * @param pSexo Sexo del empleado. pSexo pertenece a {"m","f"}.
-     * @param pFechaIngreso Fecha de ingreso a la empresa. pFechaIngreso != null && pFechaIngreso != "".
-     * @param pFechaNacimiento Fecha de Nacimiento del empleado. pFechaNacimiento != null && pFechaNacimiento != "".
-     * @param pImagen Ruta donde se encuentra la imagen. pImagen != null.
-     
-    public void actualizarCampos( String pNombre, String pApellido, String pSexo, String pFechaIngreso, String pFechaNacimiento, String pImagen )
-    {
-        txtNombre.setText( pNombre );
-        txtApellido.setText( pApellido );
-        txtGenero.setText( pSexo );
-        txtFIngreso.setText( pFechaIngreso );
-        txtFNacimiento.setText( pFechaNacimiento );
-        remove( lblImagen );
-        lblImagen = new JLabel( new ImageIcon( "./data/imagenes/" + pImagen ) );
-        lblImagen.setHorizontalAlignment( JLabel.CENTER );
-        lblImagen.setVerticalAlignment( JLabel.CENTER );
-        lblImagen.setPreferredSize( new Dimension( 170, 0 ) );
-        add( lblImagen, BorderLayout.EAST );
-
-    }
+     * Updates the fields with the state of the lift. <br>
+     * <b>post: </b> The fields show current state.
     */
+    public void refresh() {
+    	txtFloor.setText( principal.getCurrentFloor() + "" );
+    	txtStatus.setText( principal.getStatus() );
+	}
 
 }

@@ -8,26 +8,31 @@
 
 package main;
 
-import main.Lift.Direction;
+import main.Lift.DoorType;
 
 /**
  * Class that represents a lift controller
  */
-public class Stop
+public class Door
 {
     // -----------------------------------------------------------------
     // Attributes
     // -----------------------------------------------------------------
 
-    /**
-     * Stop's floor.
+	/**
+     * Doors status (false=closed, true=opened).
      */
-    private int floor;
+    private boolean isOpen;
     
     /**
-     * Stops's direction 
+     * Door type
      */
-    private Direction direction;
+    private DoorType type;
+    
+    /**
+     * Door's floor
+     */
+    private int floor;
     
 
     // -----------------------------------------------------------------
@@ -38,14 +43,11 @@ public class Stop
      * Builds the lift. <br>
      * <b>post: </b> The lift is created with an empty state <br>
      */
-    public Stop(int pFloor, Direction pDirection)
+    public Door(boolean pIsOpen, DoorType pType, int pFloor)
     {
+        isOpen = pIsOpen;
+        type = pType;
         floor = pFloor;
-        direction = pDirection;
-    }
-    
-    public Direction getDirection() {
-    	return direction;
     }
 
 }

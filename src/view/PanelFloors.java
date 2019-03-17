@@ -185,17 +185,17 @@ public class PanelFloors extends JPanel implements ActionListener
         // Floor commands (up and down)
         for (int i=0; i<nFloors; i++) {
         	int floor = floors[i];
-        	String cmd_up = cmdsLiftUp[i];
-        	String cmd_down = cmdsLiftDown[i];
+        	String cmdUp = cmdsLiftUp[i];
+        	String cmdDown = cmdsLiftDown[i];
         	
         	// up
-        	if (command.equals(cmd_up)) {
+        	if (command.equals(cmdUp)) {
         		principal.outsideActionUp(floor);
         		return;
         	}
         	
         	// down
-        	if (command.equals(cmd_down)) {
+        	if (command.equals(cmdDown)) {
         		principal.outsideActionDown(floor);
         		return;
         	}

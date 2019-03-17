@@ -190,7 +190,6 @@ public class ViewLift extends JFrame
      */
 	public void outsideActionUp(int floor) {
 		// TODO JUAN
-		
 	}
 	
 	/**
@@ -210,8 +209,7 @@ public class ViewLift extends JFrame
      * @param floor Floor to which the person inside the lift wants to go
      */
 	public void insideActionFloor(int floor) {
-		// TODO MARIA CAMILA
-		
+		// TODO MARIA CAMILA	
 	}
 	
 	/**
@@ -219,7 +217,6 @@ public class ViewLift extends JFrame
      */
 	public void insideActionEmergency() {
 		// TODO MARIA CAMILA
-		
 	}
 
 	/**
@@ -227,6 +224,5 @@ public class ViewLift extends JFrame
      */
 	public void insideActionBlockDoors() {
 		// TODO MARIA CAMILA
-		
 	}
 }

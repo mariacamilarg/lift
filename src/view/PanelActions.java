@@ -193,13 +193,15 @@ public class PanelActions extends JPanel implements ActionListener
     public void actionPerformed( ActionEvent pEvent )
     {
         String command = pEvent.getActionCommand( );
+        //System.out.println("Command received: " +command);
         
         // Floor commands
         for (int i=0; i<nFloors; i++) {
         	int floor = floors[i];
-        	String cmd_floor = cmdsFloors[i];
+        	String cmdFloor = cmdsFloors[i];
         	
-        	if (command.equals(cmd_floor)) {
+        	if (command.equals(cmdFloor)) {
+        		//System.out.println("Command ap: " +cmdFloor);
         		principal.insideActionFloor(floor);
         		return;
         	}

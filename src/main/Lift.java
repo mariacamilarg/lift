@@ -20,15 +20,15 @@ public class Lift
 	// -----------------------------------------------------------------
     // Enumerations
     // -----------------------------------------------------------------
-	enum Status{
+	public enum Status{
 	       GOING_UP, GOING_DOWN, STATIONARY, EMERGENCY, DOORS_BLOCKED;
 	   }
 	
-	enum Direction{
+	public enum Direction{
 	       UP, DOWN;
 	   }
 	
-	enum DoorType{
+	public enum DoorType{
 	       INNER, OUTER;
 	   }
 	

@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import main.Lift;
+import main.Lift.Direction;
 
 /**
  * Principal view of the app
@@ -162,7 +163,7 @@ public class ViewLift extends JFrame
      * @param floor Floor from which the up button was pressed.
      */
 	public void outsideActionUp(int floor) {
-		// TODO JUAN
+		lift.insertStop(floor, Direction.UP);
 	}
 	
 	/**
@@ -170,7 +171,8 @@ public class ViewLift extends JFrame
      * @param floor Floor from which the down button was pressed.
      */
 	public void outsideActionDown(int floor) {
-		// TODO JUAN
+		lift.insertStop(floor, Direction.DOWN);
+		
 	}
 	
 	/**

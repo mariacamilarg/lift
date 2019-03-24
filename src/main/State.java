@@ -10,6 +10,7 @@ package main;
 
 import java.util.ArrayList;
 
+import main.Lift.Direction;
 import main.Lift.Status;
 
 /**
@@ -78,9 +79,22 @@ public class State
     	return stops;
     }
     
-    public void insertStop (Stop pStop) {
-    	// TODO MC: KEY method, it has to insert it according to the logic
-    	
+    public void insertStop (Stop newStop) {
+    	int index, insertIn, actualFloor;
+    	Stop nextStop;
+    	index = 0;
+    	insertIn = stops.size();
+    	actualFloor = position;
+    	while (index < insertIn) {
+    		nextStop = stops.get(index);
+			if ((newStop.getDirection() == Direction.UP && actualFloor <= newStop.getFloor() && newStop.getFloor() <= nextStop.getFloor())
+					|| (newStop.getDirection() == Direction.DOWN && actualFloor >= newStop.getFloor() && newStop.getFloor() >= nextStop.getFloor())){
+				insertIn = index;
+			}
+			index++;
+			actualFloor = nextStop.getFloor();    			
+    	} 	
+    	stops.add(insertIn, newStop);
     }
     
     public Stop getNextStop() {

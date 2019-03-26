@@ -188,10 +188,10 @@ public class PanelFloors extends JPanel implements ActionListener
      * <b>post: </b> The inner/outer doors labels are updated.
     */
     public void openFloorDoors(int floor) {
-    	int floorIndex = Arrays.asList(floors).indexOf(floor);
+    	//int floorIndex = Arrays.asList(floors).indexOf(floor);
     	
-    	JLabel lblOuterDoor = lblsOuterDoors[floorIndex];
-    	JLabel lblInnerDoor = lblsInnerDoors[floorIndex];
+    	JLabel lblOuterDoor = lblsOuterDoors[floor];
+    	JLabel lblInnerDoor = lblsInnerDoors[floor];
     	
 		lblOuterDoor.setText(OPENED);
 		lblInnerDoor.setText(OPENED);
@@ -203,10 +203,10 @@ public class PanelFloors extends JPanel implements ActionListener
      * <b>post: </b> The inner/outer doors labels are updated.
     */
     public void closeFloorDoors(int floor) {
-    	int floorIndex = Arrays.asList(floors).indexOf(floor);
+    	//int floorIndex = Arrays.asList(floors).indexOf(floor);
     	
-    	JLabel lblInnerDoor = lblsInnerDoors[floorIndex];
-    	JLabel lblOuterDoor = lblsOuterDoors[floorIndex];
+    	JLabel lblInnerDoor = lblsInnerDoors[floor];
+    	JLabel lblOuterDoor = lblsOuterDoors[floor];
     	
     	lblInnerDoor.setText(CLOSED);
 		lblOuterDoor.setText(CLOSED);

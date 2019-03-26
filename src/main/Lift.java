@@ -194,6 +194,8 @@ public class Lift
 		    	    			state.setStatus(Status.GOING_DOWN);
 		    	    		}
 		    	    		
+		    	    		currentFloor = state.getPosition();
+		    	    		
 		    	    		view.refresh();
 		    	    	}
 		    	    	
@@ -223,11 +225,12 @@ public class Lift
      */
     public void stopAtFloor(int floor) throws InterruptedException {
     	// Opens doors
-    	int floorIndex = Arrays.asList(floors).indexOf(floor);
-		Door outerDoor = outerDoors[floorIndex];
+    	//int floorIndex = Arrays.asList(floors).indexOf(floor);
+		//Door outerDoor = outerDoors[floorIndex];
 		
-		outerDoor.open();
-		outerDoors[floorIndex] = outerDoor;
+		//outerDoor.open();
+		//outerDoors[floorIndex] = outerDoor;
+    	outerDoors[floor].open();
 		innerDoor.open();
 		
 		// Updates the view
@@ -243,8 +246,9 @@ public class Lift
     	
     	// Closes doors
     	innerDoor.close();
-    	outerDoor.close();
-    	outerDoors[floorIndex] = outerDoor;
+    	outerDoors[floor].close();
+    	//outerDoor.close();
+    	//outerDoors[floorIndex] = outerDoor;
     	
     	// Updates the view
     	view.closeFloorDoors(floor);

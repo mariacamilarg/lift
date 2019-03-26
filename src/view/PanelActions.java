@@ -166,14 +166,14 @@ public class PanelActions extends JPanel implements ActionListener
     // -----------------------------------------------------------------
 
     public void enableInsideButtonFloor(int floor) {
-		int floorIndex = Arrays.asList(floors).indexOf(floor);
-		JButton floorButton = btnsFloors[floorIndex];
+		//int floorIndex = Arrays.asList(floors).indexOf(floor);
+		JButton floorButton = btnsFloors[floor];
 		floorButton.setEnabled(true);
 	}
     
     public void disableInsideButtonFloor(int floor) {
-    	int floorIndex = Arrays.asList(floors).indexOf(floor);
-		JButton floorButton = btnsFloors[floorIndex];
+    	//int floorIndex = Arrays.asList(floors).indexOf(floor);
+		JButton floorButton = btnsFloors[floor];
 		floorButton.setEnabled(false);
 	}
 

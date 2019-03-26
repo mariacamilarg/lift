@@ -178,7 +178,6 @@ public class Lift
 		    			// Process next stop from state
 		    			Stop nextStop = state.getNextStop();
 		    	    	int nextFloor = nextStop.getFloor();
-		    	    	Direction nextDirection = nextStop.getDirection();
 		    	    	
 		    	    	int currentFloor = state.getPosition();
 		    	    	
@@ -186,7 +185,7 @@ public class Lift
 		    	    	while (currentFloor != nextFloor) {
 		    	    		Thread.sleep(MOVE_TIME_BETWEEN_FLOORS);
 		    	    		
-		    	    		if (nextDirection == Direction.UP) {
+		    	    		if (nextFloor > currentFloor) {
 		    	    			state.setPosition(currentFloor + 1);
 		    	    			state.setStatus(Status.GOING_UP);
 		    	    		} else {

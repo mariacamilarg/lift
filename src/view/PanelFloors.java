@@ -32,7 +32,7 @@ public class PanelFloors extends JPanel implements ActionListener
     // Constants
     // -----------------------------------------------------------------
 	
-	public static final String OPENED = "Opened";
+	public static final String OPENED = "OPENED";
 	public static final String CLOSED = "Closed";
 	
     // -----------------------------------------------------------------
@@ -132,8 +132,8 @@ public class PanelFloors extends JPanel implements ActionListener
         panelFloors.add( new JLabel("FLOOR") );
         panelFloors.add( new JLabel("INNER DOORS") );
         panelFloors.add( new JLabel("OUTER DOORS") );
-        panelFloors.add( new JLabel("OUTSIDE ACTIONS") );
-        panelFloors.add( new JLabel("OUTSIDE ACTIONS") );
+        panelFloors.add( new JLabel("REQ. UP") );
+        panelFloors.add( new JLabel("REQ. DOWN") );
         
         int counter = 0;
         for (int i=topFloor; i>=bottomFloor; i--) {
@@ -190,8 +190,8 @@ public class PanelFloors extends JPanel implements ActionListener
     public void openFloorDoors(int floor) {
     	//int floorIndex = Arrays.asList(floors).indexOf(floor);
     	
-    	JLabel lblOuterDoor = lblsOuterDoors[floor];
-    	JLabel lblInnerDoor = lblsInnerDoors[floor];
+    	JLabel lblOuterDoor = lblsOuterDoors[nFloors-floor-1];
+    	JLabel lblInnerDoor = lblsInnerDoors[nFloors-floor-1];
     	
 		lblOuterDoor.setText(OPENED);
 		lblInnerDoor.setText(OPENED);
@@ -205,11 +205,20 @@ public class PanelFloors extends JPanel implements ActionListener
     public void closeFloorDoors(int floor) {
     	//int floorIndex = Arrays.asList(floors).indexOf(floor);
     	
-    	JLabel lblInnerDoor = lblsInnerDoors[floor];
-    	JLabel lblOuterDoor = lblsOuterDoors[floor];
+    	JLabel lblInnerDoor = lblsInnerDoors[nFloors-floor-1];
+    	JLabel lblOuterDoor = lblsOuterDoors[nFloors-floor-1];
     	
     	lblInnerDoor.setText(CLOSED);
 		lblOuterDoor.setText(CLOSED);
+	}
+    
+    public void enableOutsideButtonsFloor(int floor) {
+		//int floorIndex = Arrays.asList(floors).indexOf(floor);
+		JButton btnUp = btnsLiftUp[nFloors-floor-1];
+		JButton btnDown = btnsLiftDown[nFloors-floor-1];
+		
+		btnUp.setEnabled(true);
+		btnDown.setEnabled(true);
 	}
     
     /**
@@ -228,12 +237,16 @@ public class PanelFloors extends JPanel implements ActionListener
         	
         	// up
         	if (command.equals(cmdUp)) {
+        		JButton btnUp = btnsLiftUp[i];
+        		btnUp.setEnabled(false);
         		principal.outsideActionUp(floor);
         		return;
         	}
         	
         	// down
         	if (command.equals(cmdDown)) {
+        		JButton btnDown = btnsLiftDown[i];
+        		btnDown.setEnabled(false);
         		principal.outsideActionDown(floor);
         		return;
         	}

@@ -66,7 +66,7 @@ public class ViewLift extends JFrame
     public ViewLift( )
     {
         setTitle( "Lift" );
-        setSize( 600, 600 );
+        setSize( 800, 600 );
         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
         // Build main connection
@@ -189,6 +189,13 @@ public class ViewLift extends JFrame
      */
 	public void closeFloorDoors(int floor) {
 		panelFloors.closeFloorDoors(floor);
+	}
+	
+	/**
+     * Enables the floor button inside the lift. <br>
+     */
+	public void enableOutsideButtonsFloor(int floor) {
+		panelFloors.enableOutsideButtonsFloor(floor);
 	}
 	
 	// -----------------------------------------------------------------

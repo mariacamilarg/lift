@@ -119,8 +119,31 @@ public class PanelActions extends JPanel implements ActionListener
         cmdsFloors = new String[nFloors];
         btnsFloors = new JButton[nFloors];
         
-        JPanel panelActions = new JPanel( new GridLayout( nFloors+2, 1 ) );
+        JPanel panelActions = new JPanel( new GridLayout( nFloors+1, 1 ) );
         
+        // Emergency and Block Doors Buttons
+        JPanel panelEmergBlock = new JPanel( new GridLayout( 1, 2 ) );
+        
+        // Emergency button
+        inEmergency = false;
+    	cmdEmergency = "EMERGENCY";
+    	btnEmergency = new JButton( );
+    	btnEmergency.setText( cmdEmergency );
+    	btnEmergency.setActionCommand( cmdEmergency );
+    	btnEmergency.addActionListener( this );
+    	panelEmergBlock.add(btnEmergency);
+    	
+    	// Block Doors button
+    	cmdBlockDoors = "BLOCK_DOORS";
+    	btnBlockDoors = new JButton( );
+    	btnBlockDoors.setText( cmdBlockDoors );
+    	btnBlockDoors.setActionCommand( cmdBlockDoors );
+    	btnBlockDoors.addActionListener( this );
+    	panelEmergBlock.add(btnBlockDoors);
+    	
+    	panelActions.add(panelEmergBlock);
+        
+    	// Floor buttons
         int counter = 0;
         for (int i=topFloor; i>=bottomFloor; i--) {
         	
@@ -139,24 +162,6 @@ public class PanelActions extends JPanel implements ActionListener
         	// Counter
         	counter++;
         }
-        
-        // Emergency button
-        inEmergency = false;
-    	cmdEmergency = "EMERGENCY";
-    	btnEmergency = new JButton( );
-    	btnEmergency.setText( cmdEmergency );
-    	btnEmergency.setActionCommand( cmdEmergency );
-    	btnEmergency.addActionListener( this );
-    	panelActions.add(btnEmergency);
-    	
-    	// Block Doors button
-    	cmdBlockDoors = "BLOCK_DOORS";
-    	btnBlockDoors = new JButton( );
-    	btnBlockDoors.setText( cmdBlockDoors );
-    	btnBlockDoors.setActionCommand( cmdBlockDoors );
-    	btnBlockDoors.addActionListener( this );
-    	panelActions.add(btnBlockDoors);
-        
 
     	add( panelActions, BorderLayout.CENTER );
     }
@@ -167,13 +172,13 @@ public class PanelActions extends JPanel implements ActionListener
 
     public void enableInsideButtonFloor(int floor) {
 		//int floorIndex = Arrays.asList(floors).indexOf(floor);
-		JButton floorButton = btnsFloors[floor];
+		JButton floorButton = btnsFloors[nFloors-floor-1];
 		floorButton.setEnabled(true);
 	}
     
     public void disableInsideButtonFloor(int floor) {
     	//int floorIndex = Arrays.asList(floors).indexOf(floor);
-		JButton floorButton = btnsFloors[floor];
+		JButton floorButton = btnsFloors[nFloors-floor-1];
 		floorButton.setEnabled(false);
 	}
 

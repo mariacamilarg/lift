@@ -36,9 +36,9 @@ public class Lift
     // Constants
     // -----------------------------------------------------------------
 	
-	public static final int MOVE_TIME_BETWEEN_FLOORS = 2000; // in milliseconds
+	public static final int MOVE_TIME_BETWEEN_FLOORS = 1000; // in milliseconds
 	public static final int WAIT_TIME_DOORS_OPENED = 4000; // in milliseconds
-	public static final int LOOP_WAIT_TIME = 1000; // in milliseconds
+	public static final int LOOP_WAIT_TIME = 500; // in milliseconds
 	
 	// -----------------------------------------------------------------
     // Attributes
@@ -235,6 +235,7 @@ public class Lift
 		
 		// Updates the view
 		view.enableInsideButtonFloor(floor);
+		view.enableOutsideButtonsFloor(floor);
 		view.openFloorDoors(floor);
 		view.refresh();
 		

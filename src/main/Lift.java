@@ -182,7 +182,7 @@ public class Lift
 		    	    	int currentFloor = state.getPosition();
 		    	    	
 		    	    	// Move between floors
-		    	    	while (currentFloor != nextFloor) {
+		    	    	if (currentFloor != nextFloor) {
 		    	    		Thread.sleep(MOVE_TIME_BETWEEN_FLOORS);
 		    	    		
 		    	    		if (nextFloor > currentFloor) {
@@ -196,10 +196,10 @@ public class Lift
 		    	    		currentFloor = state.getPosition();
 		    	    		
 		    	    		view.refresh();
+		    	    	} else { 	
+			    	    	// Stop
+			    	    	stopAtFloor(nextFloor);
 		    	    	}
-		    	    	
-		    	    	// Stop
-		    	    	stopAtFloor(nextFloor);
 		    		} else {
 		    			state.setStatus(Status.STATIONARY);
 		    			view.refresh();

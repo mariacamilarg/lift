@@ -1,4 +1,4 @@
 # TIMES:
 
 * Design = 2h
-* Implementation = 5h
+* Implementation = 6h

@@ -158,7 +158,11 @@ public class PanelFloors extends JPanel implements ActionListener
         	btnLiftUp.setText( "UP ^" );
         	btnLiftUp.setActionCommand( commandUp );
         	btnLiftUp.addActionListener( this );
-        	panelFloors.add(btnLiftUp);
+        	if (counter != 0) { // Don't add top floor up
+        		panelFloors.add(btnLiftUp);
+        	} else { 
+        		panelFloors.add(new JLabel(""));
+        	}
         	cmdsLiftUp[counter] = commandUp;
         	btnsLiftUp[counter] = btnLiftUp;
         	
@@ -167,7 +171,11 @@ public class PanelFloors extends JPanel implements ActionListener
         	btnLiftDown.setText( "DOWN v" );
         	btnLiftDown.setActionCommand( commandDown );
         	btnLiftDown.addActionListener( this );
-        	panelFloors.add(btnLiftDown);
+        	if (counter != nFloors-1) { // Don't add bottom floor down
+        		panelFloors.add(btnLiftDown);
+        	} else { 
+        		panelFloors.add(new JLabel(""));
+        	}
         	cmdsLiftDown[counter] = commandDown;
         	btnsLiftDown[counter] = btnLiftDown;
         	

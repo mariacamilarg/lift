@@ -75,8 +75,8 @@ public class PanelLift extends JPanel
         setLayout( new BorderLayout( ) );
         setBorder( new CompoundBorder( new EmptyBorder( 0, 0, 5, 0 ), new TitledBorder( "Current Status" ) ) );
 
-        lblFloor = new JLabel( "Floor: " );
-        lblStatus = new JLabel( "Status: " );
+        lblFloor = new JLabel( "FLOOR: " );
+        lblStatus = new JLabel( "STATUS: " );
 
         txtFloor = new JTextField( principal.getCurrentFloor() );
         txtFloor.setEditable( false );

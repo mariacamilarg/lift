@@ -51,5 +51,9 @@ public class Stop
     public Direction getDirection() {
     	return direction;
     }
+    
+    public String toString() {
+    	return "(floor: " + floor + ", direction: " + direction + ")";
+    }
 
 }

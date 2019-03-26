@@ -38,7 +38,7 @@ public class Lift
 	
 	public static final int MOVE_TIME_BETWEEN_FLOORS = 1000; // in milliseconds
 	public static final int WAIT_TIME_DOORS_OPENED = 4000; // in milliseconds
-	public static final int LOOP_WAIT_TIME = 500; // in milliseconds
+	public static final int LOOP_WAIT_TIME = 1000; // in milliseconds
 	
 	// -----------------------------------------------------------------
     // Attributes
@@ -263,6 +263,7 @@ public class Lift
     public void insertStop(int floor, Direction direction) {
     	Stop newStop = new Stop(floor, direction);
     	state.insertStop(newStop);
+    	System.out.println( "STOPS: " + state.getStops().toString() );
     }
 
     /**
